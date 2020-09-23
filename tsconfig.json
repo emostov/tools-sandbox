@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "CommonJS",
+    "target": "ES2020",
+    "outDir": "build"
+  },
+  "typeRoots": [
+    "./node_modules/@types"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./src/**/*.ts",
+    "./declarations/**/*.d.ts"
+  ],
+  "extends": "./node_modules/@amaurymartiny/tsconfig/tsconfig"
+}
