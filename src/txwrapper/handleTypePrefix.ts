@@ -54,17 +54,27 @@ async function main() {
 			version: 4,
 		}
 	);
+
+	console.log('test');
+
+	// The below expresion is equilvalent to:
+	// const signature = alice.sign(extrinsicPayload.toU8a({ method: true }), { withType: true });
 	const { signature } = extrinsicPayload.sign(alice);
 
-	// the actual payload that was signed is different from `ExtrinsincPayload.toU8a` because it does
-	// not have the length of the `method` property included. As it mentions in the comment
-	// above `ExtrinsincPayload.sign`, this means this data as signed is undecodable
+	// As it mentioned in the comment within the `ExtrinsincPayload.sign`, the actual payload that is
+	// signed is different from `ExtrinsincPayload.toU8a` because it does not have the length of the
+	// `method` property included in the encoding
 	const actualPayloadThatWasSigned = extrinsicPayload.toU8a({ method: true });
 
 	// slice out the type prefix that gets concatenated when signing (see links 1 & 2)
 	const signatureWithTypePrefixRemoved = util.hexToU8a(signature).slice(1);
 
-	console.log(alice.verify(actualPayloadThatWasSigned));
+	console.log(
+		'The signature is valid for the payload: ',
+		alice.verify(actualPayloadThatWasSigned, signatureWithTypePrefixRemoved)
+	);
+
+	process.exit(1);
 }
 
 main().catch(console.log);
