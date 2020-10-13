@@ -81,7 +81,7 @@ async function main() {
 		alice.verify(actualPayloadThatWasSigned, signatureWithTypePrefixRemoved)
 	);
 
-	process.exit(1);
+	// process.exit(1);
 }
 
 main().catch(console.log);
