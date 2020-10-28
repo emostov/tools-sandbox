@@ -1,19 +1,28 @@
-{
-  "compilerOptions": {
-    "declaration": true,
+  {
+    "compilerOptions": {
+    "target": "esnext",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
     "module": "CommonJS",
-    "target": "ES2020",
+    "sourceMap": true,
+    "lib": [
+      "es6",
+      "esnext",
+      "dom"
+    ],
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
     "outDir": "build"
   },
-  "typeRoots": [
-    "./node_modules/@types"
+  "include": [
+    "src/**/*.ts"
   ],
   "exclude": [
+    "**/*.spec.ts",
     "node_modules"
   ],
-  "include": [
-    "./src/**/*.ts",
-    "./declarations/**/*.d.ts"
-  ],
-  "extends": "./node_modules/@amaurymartiny/tsconfig/tsconfig"
+  "compileOnSave": false
 }
