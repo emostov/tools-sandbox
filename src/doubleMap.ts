@@ -9,8 +9,13 @@ async function main() {
 		{ pageSize: 3 }
 	);
 	erasValidatorPrefs.forEach((k) => console.log(k.toHuman()));
+	// logs
+	// ['138', '1zugcag7cJVBtVRnFxv5Qftn7xKAnR6YJ9x4x3XLgGgmNnS']
+	// ['138', '14bARWgpfEiURUS7sGGb54V6mvteRhYWDovcjnFMsLfxRxVV']
+	// ['138', '1hJdgnAPSjfuHZFHzcorPnFvekSHihK9jdNPWHXgeuL7zaJ']
 
 	// erasStakersEntries: Array<Array<[key1: StorageKey, key2: StorageKey], Codec>
+	// entriesPaged() is used instead of entries() just because it is quicker for the demo
 	const erasValidatorPrefsEntries = await api.query.staking.erasValidatorPrefs.entriesPaged(
 		{ pageSize: 5 }
 	);
@@ -18,7 +23,7 @@ async function main() {
 		console.log(e.map((c) => c.toHuman()))
 	);
 
-	// Returns
+	// logs
 	// [
 	// 	['138', '1zugcag7cJVBtVRnFxv5Qftn7xKAnR6YJ9x4x3XLgGgmNnS'],
 	// 	{ commission: '0.70%' }
