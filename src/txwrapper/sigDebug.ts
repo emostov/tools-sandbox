@@ -64,7 +64,7 @@ async function main() {
 			},
 		}),
 		nonce: 125,
-		specVersion: 0,
+		specVersion,
 		tip: 0,
 		transactionVersion,
 	});
@@ -72,16 +72,16 @@ async function main() {
 	const signature = "0x6a5fba742c6677d10b996139bf7ffbcca8431265d94e2183d235fa10adfb9b047edc5c3a9dd2fe1bd8281aeeaae90f73a45f02e61479e9fa1ad03fe5ffefee09"
 
 	// slice out the type prefix that gets concatenated when signing (see links 1 & 2)
-	const signatureWithTypePrefixRemoved = util.hexToU8a(signature).slice(1);
+	const signatureWithTypePrefixRemoved = util.hexToU8a(signature);
 
 	let address = "15YVfxAkATndVv35pYj3dSUeqXHVPMSZ2g79JaPR4WWTEhPF";
 	// publicKey has prefix + 2 checksum bytes, short only prefix + 1 checksum byte
-	let decodedAddr = crypto.base58Decode(address).slice(3)
+	// let decodedAddr = crypto.base58Decode(address).slice(3)
 
-	let res = crypto.schnorrkelVerify(
+	let res = crypto.signatureVerify(
 		sigPayload.toU8a({ method: true }),
 		signatureWithTypePrefixRemoved,
-		decodedAddr
+		address
 	)
 
 	console.log("verified: ", res);
