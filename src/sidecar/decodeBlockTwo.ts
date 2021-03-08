@@ -14,7 +14,7 @@ async function main() {
 
 	const call = hashBlock2.registry.createType('Call', method);
 
-	console.log(call.toHuman());
+	// console.log(call.toHuman());
 }
 
 main().catch(console.log);
