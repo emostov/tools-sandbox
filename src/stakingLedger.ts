@@ -3,11 +3,13 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 async function main() {
 	const provider = new WsProvider('wss://rpc.polkadot.io');
 	const api = await ApiPromise.create({ provider });
-	// const x = await api.query.staking.nominators.entries();
-	const x = await api.rpc.system.accountNextIndex(
-		'15YVfxAkATndVv35pYj3dSUeqXHVPMSZ2g79JaPR4WWTEhPF'
+	const block = await api.rpc.chain.getBlockHash(789629)
+	const x = await api.query.staking.bonded.at(block,
+		'1zugcapKRuHy2C1PceJxTvXWiq6FHEDm2xa5XSU7KYP3rJE'
 	);
-	console.log(x.toHuman());
+	console.log(x.toJSON());
+	const nom = await api.query.staking.payee('1zugcapKRuHy2C1PceJxTvXWiq6FHEDm2xa5XSU7KYP3rJE');
+	console.log(nom.toJSON());
 }
 
 main().catch(console.log);
