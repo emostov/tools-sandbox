@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@polkadot/api": "4.0.3",
+    "@substrate/txwrapper": "^4.0.0",
     "axios": "^0.21.1",
     "bluebird": "^3.7.2",
     "bn.js": "^5.2.0",
